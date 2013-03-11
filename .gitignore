@@ -1,20 +1,28 @@
-logs
+# Mac
+.DS_Store
+
+*.class
+*.log
+
+#Eclipse
+.classpath
+.project
+.cache
+.target/
+.scala_dependencies
+
+# sbt specific
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
 project/project
 project/target
 target
-tmp
-.history
-dist
-/.idea
-/*.iml
-/out
-/.idea_modules
-/.classpath
-/.project
-/RUNNING_PID
-/.settings
-.DS_Store
-.scala_dependencies
-.target/
 bin/
-.cache
+
+
+# Scala-IDE specific
+.scala_dependencies
