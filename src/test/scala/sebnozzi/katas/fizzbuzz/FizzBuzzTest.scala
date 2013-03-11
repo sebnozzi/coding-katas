@@ -1,7 +1,7 @@
 package sebnozzi.katas.fizzbuzz
 
 import org.scalatest.FunSuite
-import Fizzbuzz._
+import FizzBuzz._
 
 class FizzBuzzSuite extends FunSuite {
   

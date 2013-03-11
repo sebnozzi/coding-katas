@@ -2,9 +2,7 @@ package sebnozzi.katas.fizzbuzz
 
 import sebnozzi.extensions.Extensions._
 
-object Fizzbuzz extends App {
-
-  fizzBuzzUpTo(50).foreach(println)
+object FizzBuzz {
 
   def fizzBuzzUpTo(upperBound: Int) = (1 to upperBound).toList.map(fizzBuzzOf)
 
@@ -15,7 +13,7 @@ object Fizzbuzz extends App {
     }
   }
 
-  case class SpecialWord(word: String, when: (Int) => Boolean) {
+  private case class SpecialWord(word: String, when: (Int) => Boolean) {
     def correspondsTo(number: Int): Boolean = when(number)
     override def toString = word
   }
