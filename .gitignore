@@ -10,6 +10,8 @@
 .cache
 .target/
 .scala_dependencies
+.worksheet/
+*.sc
 
 # sbt specific
 dist/*
