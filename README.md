@@ -11,3 +11,16 @@ Each kata is quite small, typically:
 * 1 for the tests
 
 Since they are small, all katas are contained in one single project.
+
+List of Katas to implement:
+
+* number guessing
+* hangman (word guessing)
+* tic-tac-toe
+* rock, paper, scissors
+* eeny, meeny, miny, moe
+* minesweeper (numbers)
+* algorithms / data-structures: quicksort, tree, etc.
+* binar/hex number translator
+* morse code?
+* vendor machine (money change)
