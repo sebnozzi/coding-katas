@@ -5,11 +5,12 @@ object CodingkatasBuild extends Build {
 
   val scalaTest = "org.scalatest" % "scalatest_2.10" % "2.0.M5b" % "test"
 
-
   lazy val codingkatas = Project(
     id = "codingkatas",
     base = file("."),
-    settings = Project.defaultSettings ++ Seq(
+    settings = Project.defaultSettings ++ 
+    seq(ScctPlugin.instrumentSettings : _*) ++
+    Seq(
       name := "CodingKatas",
       organization := "sebnozzi",
       version := "0.1-SNAPSHOT",
