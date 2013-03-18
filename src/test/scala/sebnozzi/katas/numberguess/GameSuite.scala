@@ -25,10 +25,6 @@ class GameSuite extends FunSuite {
     assert(game.isWon)
   }
 
-  test("the guesses provided should drive the game") {
-    val game = makeGame(number = 50, guesses = 49, 51, 50)
-  }
-
   test("the game loop should leave the game won, if there is a correct answer") {
     val game = makeGame(number = 50, guesses = 49, 51, 50)
     assert(game.isWon, "game should be won")
@@ -36,7 +32,7 @@ class GameSuite extends FunSuite {
 
   test("the game loop should NOT leave the game won, if there was NOT a correct answer") {
     val game = makeGame(50, guesses = 49, 51, 76)
-    assert(!game.isWon, "game should be NOT be won")
+    assert(game.isOpen, "game should be NOT be won")
   }
 
 }

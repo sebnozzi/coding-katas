@@ -47,5 +47,13 @@ class InteractiveGameControllerSuite extends FunSuite {
     controller.playGame(game)
     assert(controller.gotCorrectAnswer, "Should have gotten a correct answer")
   }
+  
+  test("it should stop requesting guesses once game is won"){
+    val game = new Game(number = 50)
+    val controller = new PredefinedGuessController(guesses = 49, 51, 52, 50, 49, 47) 
+    controller.playGame(game)
+    assert(game.attempts === 4)
+    assert(game.isWon)
+  }
 
 }
