@@ -24,3 +24,7 @@ List of Katas to implement:
 * binar/hex number translator
 * morse code?
 * vendor machine (money change)
+
+Additional:
+
+ https://sites.google.com/site/tddproblems/all-problems-1
