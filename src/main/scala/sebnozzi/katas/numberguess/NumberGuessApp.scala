@@ -1,31 +1,27 @@
 package sebnozzi.katas.numberguess
 
-object NumberGuessApp extends App {
+object NumberGuessApp extends App with InteractiveGameController {
 
-  val myGameController = new IterativeGameController() {
-
-    def nextGuess: Option[Int] = {
-      println("Guess a number:")
-      val input = Console.in.readLine()
-      try {
-        Some(Integer.parseInt(input))
-      } catch {
-        case e: NumberFormatException => None
-      }
+  def askGuess: Option[Int] = {
+    println("Guess a number:")
+    val input = Console.in.readLine()
+    try {
+      Some(Integer.parseInt(input))
+    } catch {
+      case e: NumberFormatException => None
     }
+  }
 
-    def onAnswer(answer: Answer) {
-      answer match {
-        case Correct => println("Correct! You win")
-        case TooLow => println("Try higher")
-        case TooHigh => println("Try lower")
-      }
+  def showAnswer(answer: Answer, iteration: GameIteration) {
+    answer match {
+      case Correct => println(s"Correct! You won in ${iteration.attempts} attempts")
+      case TooLow => println("Try higher")
+      case TooHigh => println("Try lower")
     }
-
   }
 
   val game = new Game()
 
-  myGameController.playGame(game)
+  playGame(game)
 
 }

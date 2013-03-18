@@ -3,38 +3,30 @@ package sebnozzi.katas.numberguess
 import org.scalatest.FunSuite
 import scala.collection.mutable.ListBuffer
 
-object GameControllerSuite {
+class InteractiveGameControllerSuite extends FunSuite {
 
-  class PredefinedGuessController(guesses: Int*) extends IterativeGameController {
-
+  class PredefinedGuessController(guesses: Int*) extends InteractiveGameController {
     val guessIterator = guesses.toIterator
 
-    def nextGuess: Option[Int] = {
+    def askGuess: Option[Int] = {
       if (guessIterator.hasNext)
         Some(guessIterator.next())
       else
         None
     }
 
-    def onAnswer(answer: Answer) {}
-
+    def showAnswer(answer: Answer, iteration: GameIteration) {}
   }
 
   def makeController(guesses: Int*) = {
     new PredefinedGuessController(guesses: _*)
   }
 
-}
-
-class GameControllerSuite extends FunSuite {
-
-  import GameControllerSuite._
-
   test("gettings the corresponding answers for the guesses") {
     val game = new Game(number = 50)
     val answerObserver = new PredefinedGuessController(guesses = 49, 51, 50) {
       val answers = new ListBuffer[Answer]
-      override def onAnswer(answer: Answer) {
+      override def showAnswer(answer: Answer, iteration: GameIteration) {
         answers.append(answer)
       }
     }
@@ -46,7 +38,7 @@ class GameControllerSuite extends FunSuite {
     val game = new Game()
     val controller = new PredefinedGuessController(guesses = (1 to 100): _*) {
       var gotCorrectAnswer = false
-      override def onAnswer(answer: Answer) {
+      override def showAnswer(answer: Answer, iteration: GameIteration) {
         if (answer == Correct) {
           gotCorrectAnswer = true
         }
