@@ -15,7 +15,7 @@ class InteractiveGameControllerSuite extends FunSuite {
         None
     }
 
-    def showAnswer(answer: Answer, iteration: GameIteration) {}
+    def showAnswer(answer: Answer, attemptNr: Int) {}
   }
 
   def makeController(guesses: Int*) = {
@@ -26,11 +26,11 @@ class InteractiveGameControllerSuite extends FunSuite {
     val game = new Game(number = 50)
     val answerObserver = new PredefinedGuessController(guesses = 49, 51, 50) {
       val answers = new ListBuffer[Answer]
-      override def showAnswer(answer: Answer, iteration: GameIteration) {
+      override def showAnswer(answer: Answer, attemptNr: Int) {
         answers.append(answer)
       }
     }
-    answerObserver.playGame(game)
+    answerObserver.play(game)
     assert(answerObserver.answers.size === 3)
   }
 
@@ -38,20 +38,20 @@ class InteractiveGameControllerSuite extends FunSuite {
     val game = new Game()
     val controller = new PredefinedGuessController(guesses = (1 to 100): _*) {
       var gotCorrectAnswer = false
-      override def showAnswer(answer: Answer, iteration: GameIteration) {
+      override def showAnswer(answer: Answer, attemptNr: Int) {
         if (answer == Correct) {
           gotCorrectAnswer = true
         }
       }
     }
-    controller.playGame(game)
+    controller.play(game)
     assert(controller.gotCorrectAnswer, "Should have gotten a correct answer")
   }
   
   test("it should stop requesting guesses once game is won"){
     val game = new Game(number = 50)
     val controller = new PredefinedGuessController(guesses = 49, 51, 52, 50, 49, 47) 
-    controller.playGame(game)
+    controller.play(game)
     assert(game.attempts === 4)
     assert(game.isWon)
   }

@@ -12,16 +12,14 @@ object NumberGuessApp extends App with InteractiveGameController {
     }
   }
 
-  def showAnswer(answer: Answer, iteration: GameIteration) {
+  def showAnswer(answer: Answer, attemptNr: Int) {
     answer match {
-      case Correct => println(s"Correct! You won in ${iteration.attempts} attempts")
       case TooLow => println("Try higher")
       case TooHigh => println("Try lower")
+      case Correct => println(s"Correct! You won in ${attemptNr} attempts")
+      case NoAnswer => // should not happen
     }
   }
 
-  val game = new Game()
-
-  playGame(game)
-
+  play(new Game)
 }

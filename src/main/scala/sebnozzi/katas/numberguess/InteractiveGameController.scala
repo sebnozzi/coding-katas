@@ -5,13 +5,13 @@ import scala.collection.Iterator
 trait InteractiveGameController {
 
   def askGuess(): Option[Int]
-  def showAnswer(answer: Answer, iteration: GameIteration)
+  def showAnswer(answer: Answer, attemptNr: Int)
 
-  def playGame(game: Game) {
+  def play(game: Game) {
     val guesses = Iterator.continually(askGuess()).takeWhile(guess => guess.isDefined && game.isOpen)
     for (Some(guess) <- guesses) {
-      val (answer, resultingIteration) = game.iterateWithGuess(guess)
-      showAnswer(answer, resultingIteration)
+      game.makeGuess(guess)
+      showAnswer(game.lastAnswer, game.attempts)
     }
   }
 
