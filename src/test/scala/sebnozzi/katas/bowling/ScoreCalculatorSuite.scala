@@ -45,6 +45,10 @@ class ScoreCalculatorSuite extends FunSuite {
     assert(scoreOf("--X2/") === 20)
   }
 
+  test("a game of a simple strike and two bonus rolls should not add the two rolls twice"){
+    assert(scoreOf("X12") === 13)
+  }
+  
   // Examples taken from: http://codingdojo.org/cgi-bin/wiki.pl?KataBowling
 
   test("20 rolls: 10 pairs of 9 and miss") {
