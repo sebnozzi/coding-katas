@@ -8,7 +8,8 @@ trait InteractiveGameController {
   def showAnswer(answer: Answer, attemptNr: Int)
 
   def play(game: Game) {
-    val guesses = Iterator.continually(askGuess()).takeWhile(guess => guess.isDefined && game.isOpen)
+    def shouldMakeGuess(guess: Option[Int]) = guess.isDefined && game.isOpen
+    val guesses = Iterator.continually(askGuess).takeWhile(shouldMakeGuess)
     for (Some(guess) <- guesses) {
       game.makeGuess(guess)
       showAnswer(game.lastAnswer, game.attempts)
