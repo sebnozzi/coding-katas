@@ -1,0 +1,31 @@
+Scala (pron.: /ˈskɑːlə/ skah-lə) is a multi-paradigm programming language 
+designed as "the thinking man's Java" — building on top of the Java virtual 
+machine (JVM) and maintaining strong interoperability with Java, while at the 
+same time integrating functional programming along with Java's object-oriented 
+programming model, cleaning up what are often considered to have been poor 
+design decisions in Java (e.g. type erasure, checked exceptions, the 
+non-unified type system) and adding a number of other features designed to 
+allow cleaner, more concise and more expressive code to be written.[5]
+
+Like Java, Scala is statically typed and strongly object-oriented, uses a 
+curly-brace syntax reminiscent of C, and compiles code into Java bytecode, 
+allowing Scala code to be run on the JVM and permitting Java libraries to be 
+freely called from Scala (and vice-versa) without the need for a glue layer 
+in-between.
+
+Compared with Java, Scala adds many features of functional programming 
+languages like Scheme, Standard ML and Haskell, including anonymous functions, 
+type inference, list comprehensions (known in Scala as "for-comprehensions"), 
+lazy initialization, extensive language and library support for 
+side-effect-less code, pattern matching, case classes, delimited continuations, 
+higher-order types, much better support for covariance and contravariance than 
+in Java, etc. Scala also provides a unified type system (as in C#, but unlike 
+in Java), where all types, including primitive types like integers and 
+booleans, are objects that are subclasses of the type Any. Scala likewise 
+contains a number of other features present in C# but not Java, including 
+operator overloading, optional parameters, named parameters, raw strings (that 
+may be multi-line in Scala), and no checked exceptions.
+
+The name Scala is a blend of "scalable" and "language", signifying that it is 
+designed to grow with the demands of its users. James Strachan, the creator of 
+Groovy, described Scala as a possible successor to Java.

@@ -1,17 +1,17 @@
 package sebnozzi.katas.textprocessing
 
 import org.scalatest.FunSuite
-
 import WordWrap._
+import scala.io.Source
 
 class WordWrapSuite extends FunSuite {
 
   test("a short line should not be wrapped") {
-    assert(wrap("this is a short line") === "this is a short line")
+    assert(wrap("1234", max=5) === "1234")
   }
 
   test("a long line should be wrapped") {
-    assert(wrap("this is a long line", max = 10) === "this is a \nlong line")
+    assert(wrap("1234 5678", max = 5) === "1234 \n5678")
   }
   
   test("lines should be wrapped at word boundary") {
@@ -24,6 +24,11 @@ class WordWrapSuite extends FunSuite {
     val expected = Seq("this is ", "not a so ", "short ", "line, ", "unfortulately")
 
     assert(lines === expected)
+  }
+  
+  test("word-wrap a long text"){
+    val input = Source.fromInputStream(this.getClass().getResourceAsStream("/scala.article.txt"))
+    input.getLines.map(line => wrap(line)).foreach(line => line.split("\n").foreach(println))
   }
 
 }
