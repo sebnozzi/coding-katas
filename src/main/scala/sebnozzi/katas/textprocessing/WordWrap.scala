@@ -6,18 +6,18 @@ object WordWrap {
 
   def wrap(text: String, max: Int = 80):String = {
     var position = 0
-    val result = new ListBuffer[Char]
+    val result = new StringBuffer()
 
     for (word <- splitInWords(text)) {
       if (position + word.size > max) {
-        result += '\n'
+        result.append('\n')
         position = 0
       }
-      result ++= word
+      result.append(word)
       position = position + word.size
     }
 
-    result.mkString
+    result.toString
   }
 
   def splitInWords(text: String) = {
