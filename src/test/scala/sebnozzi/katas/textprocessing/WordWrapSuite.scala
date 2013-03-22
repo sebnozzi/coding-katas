@@ -11,16 +11,16 @@ class WordWrapSuite extends FunSuite {
   }
 
   test("a long line should be wrapped") {
-    assert(wrap("this is a short line", max = 10) === "this is a \nshort line")
+    assert(wrap("this is a long line", max = 10) === "this is a \nlong line")
   }
   
-  ignore("lines should be wrapped at word boundary") {
-    assert(wrap("this is not short line", max = 10) === "this is \nnot short line")
+  test("lines should be wrapped at word boundary") {
+    assert(wrap("this is not short line", max = 10) === "this is \nnot short \nline")
   }
 
-  ignore("a very long line should be wrapped in many lines") {
+  test("a very long line should be wrapped in many lines") {
     val input = "this is not a so short line, unfortulately"
-    val lines = wrap(input, max = 10).split("\n")
+    val lines = wrap(input, max = 10).split("\n").toList
     val expected = Seq("this is ", "not a so ", "short ", "line, ", "unfortulately")
 
     assert(lines === expected)
