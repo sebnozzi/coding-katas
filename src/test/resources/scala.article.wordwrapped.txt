@@ -1,3 +1,15 @@
+# ignore lines starting with "#" (like this one)
+# Count words
+# count capitalized words
+# count sentences
+# find longest sentence
+# find shortest sentence
+# count paragraphs
+# re-produce the text with no content in parenthesis
+# replace quotes for >>quoted text<<
+# count the times Scala appears in the beginning of a sentence
+# replace contents of parenthesis with -----
+
 Scala (pron.: /ˈskɑːlə/ skah-lə) is a multi-paradigm programming language 
 designed as "the thinking man's Java" — building on top of the Java virtual 
 machine (JVM) and maintaining strong interoperability with Java, while at the 
