@@ -6,16 +6,19 @@ import Game._
 class Game(number: Int = Game.randomNumber) {
 
   private var state = GameState()
-  private var _lastAnswer:Answer = NoAnswer
+  private var _lastAnswer:Option[Answer] = None
 
   def attempts: Int = state.attempts
   def isWon = state.gameWon
   def isOpen = !isWon
-  def lastAnswer = _lastAnswer
+  def lastAnswer = _lastAnswer match {
+    case Some(answer) => answer
+    case None => throw new IllegalStateException("Should make a guess first")
+  }
 
   def makeGuess(guess: Int) {
     val answer = answerForGuess(guess)
-    _lastAnswer = answer
+    _lastAnswer = Some(answer)
     state = nextStateForAnswer(answer)
   }
 
@@ -40,7 +43,6 @@ class Game(number: Int = Game.randomNumber) {
 case class GameState(attempts: Int = 0, gameWon: Boolean = false)
 
 sealed abstract class Answer
-case object NoAnswer extends Answer
 case object Correct extends Answer
 case object TooLow extends Answer
 case object TooHigh extends Answer

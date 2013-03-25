@@ -17,7 +17,6 @@ object NumberGuessApp extends App with InteractiveGameController {
       case TooLow => println("Try higher")
       case TooHigh => println("Try lower")
       case Correct => println(s"Correct! You won in ${attemptNr} attempts")
-      case NoAnswer => // should not happen
     }
   }
 

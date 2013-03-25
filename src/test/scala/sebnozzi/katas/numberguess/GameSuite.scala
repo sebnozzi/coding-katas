@@ -6,19 +6,24 @@ import scala.collection.mutable.ListBuffer
 import sebnozzi.katas.numberguess._
 
 class GameSuite extends FunSuite {
-  
-  def makeGame(number:Int, guesses:Int*)={
+
+  def makeGame(number: Int, guesses: Int*) = {
     val game = new Game(number)
     guesses.foreach(guess => game.makeGuess(guess))
     game
   }
-  
-  
+
   test("Initial iteration") {
     val game = new Game(50)
     assert(game.attempts === 0)
     assert(game.isWon === false)
-    assert(game.lastAnswer === NoAnswer)
+  }
+
+  test("Asking for lastAnswer before making guess results in error") {
+    val game = new Game(50)
+    intercept[IllegalStateException] {
+      game.lastAnswer
+    }
   }
 
   test("Getting too low") {
@@ -30,20 +35,20 @@ class GameSuite extends FunSuite {
     val game = makeGame(50, guesses = 51)
     assert(game.lastAnswer === TooHigh)
   }
-  
+
   test("A first iteration with an incorrect answer") {
     val game = makeGame(50, guesses = 49)
     assert(game.attempts === 1)
     assert(game.isWon === false)
     assert(game.lastAnswer != Correct)
-  }  
-  
+  }
+
   test("A second iteration with the CORRECT answer") {
     val game = makeGame(50, guesses = 49, 50)
     assert(game.attempts === 2)
     assert(game.isWon === true)
     assert(game.lastAnswer === Correct)
-  }  
+  }
 
   test("counting the number of attempts") {
     val game = makeGame(50, guesses = 49, 51, 50)
