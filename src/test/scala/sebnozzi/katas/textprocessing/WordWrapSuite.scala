@@ -25,10 +25,5 @@ class WordWrapSuite extends FunSuite {
 
     assert(lines === expected)
   }
-  
-  test("word-wrap a long text"){
-    val input = Source.fromInputStream(this.getClass().getResourceAsStream("/scala.article.txt"))
-    input.getLines.map(line => wrap(line)).foreach(line => line.split("\n").foreach(println))
-  }
 
 }

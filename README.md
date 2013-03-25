@@ -15,6 +15,7 @@ Since they are small, all katas are contained in one single project.
 List of Katas to implement:
 
 * number guessing
+* word-wrap
 * hangman (word guessing)
 * tic-tac-toe
 * rock, paper, scissors
