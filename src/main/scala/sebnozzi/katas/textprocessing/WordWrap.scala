@@ -23,14 +23,12 @@ object WordWrap {
   private def wordsWithTrailingSpace(text: String): Seq[String] = {
     val words = new ListBuffer[String]()
     val word = new ListBuffer[Char]()
-    for (c <- text) {
-      word += c
-      if (c == ' ') {
-        words += word.mkString
-        word.clear
-      }
+    def pushWord() = { words += word.mkString; word.clear }
+    for (ch <- text) {
+      word += ch
+      if (ch == ' ') pushWord()
     }
-    words += word.mkString
+    pushWord()
     words
   }
 
