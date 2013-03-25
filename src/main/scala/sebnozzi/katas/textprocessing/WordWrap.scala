@@ -4,25 +4,25 @@ import scala.collection.mutable.ListBuffer
 
 object WordWrap {
 
-  def wrap(text: String, max: Int = 80):String = {
-    var position = 0
+  def wrap(text: String, limit: Int = 80): String = {
     val result = new StringBuffer()
+    var position = 0
 
-    for (word <- splitInWords(text)) {
-      if (position + word.size > max) {
+    for (word <- wordsWithTrailingSpace(text)) {
+      if (position + word.size > limit) {
         result.append('\n')
         position = 0
       }
       result.append(word)
-      position = position + word.size
+      position += word.size
     }
 
     result.toString
   }
 
-  def splitInWords(text: String) = {
-    val words = new ListBuffer[String]
-    val word = new ListBuffer[Char]
+  private def wordsWithTrailingSpace(text: String): Seq[String] = {
+    val words = new ListBuffer[String]()
+    val word = new ListBuffer[Char]()
     for (c <- text) {
       word += c
       if (c == ' ') {
@@ -31,7 +31,7 @@ object WordWrap {
       }
     }
     words += word.mkString
-    words.toSeq
+    words
   }
 
 }
