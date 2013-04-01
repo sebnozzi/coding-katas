@@ -4,27 +4,26 @@ import sebnozzi.extensions.Extensions._
 
 object FizzBuzz {
 
-  def fizzBuzzUpTo(upperBound: Int) = (1 to upperBound).toList.map(fizzBuzzOf)
+  def fizzBuzzOf(range: Range): List[String] = range.toList.map { num => fizzBuzzOf(num) }
 
   def fizzBuzzOf(number: Int): String = {
-    specialWordsFor(number: Int) match {
+    wordsFor(number: Int) match {
       case Seq() => number.toString
-      case matchingWords => matchingWords.mkString("-")
+      case wordsFound => wordsFound.mkString("-")
     }
   }
 
-  private case class SpecialWord(word: String, condition: (Int) => Boolean) {
+  private def wordsFor(number: Int): Seq[Word] = words.filter { word => word.correspondsTo(number) }
+
+  private lazy val words = Seq(
+    new Word("Fizz", condition = { number => number.isDivisibleByOrHasDigit(3) }),
+    new Word("Buzz", condition = { number => number.isDivisibleByOrHasDigit(5) }),
+    new Word("Wizz", condition = { number => number.isDivisibleByOrHasDigit(7) }))
+
+  private case class Word(word: String, condition: (Int) => Boolean) {
     def correspondsTo(number: Int): Boolean = condition(number)
     override def toString = word
   }
 
-  private lazy val specialWords = Seq(
-    new SpecialWord("Fizz", condition = { number => number.isDivisibleByOrHasDigit(3) }),
-    new SpecialWord("Buzz", condition = { number => number.isDivisibleByOrHasDigit(5) }),
-    new SpecialWord("Wizz", condition = { number => number.isDivisibleByOrHasDigit(7) }))
-
-  private def specialWordsFor(number: Int): Seq[SpecialWord] = {
-    specialWords.filter { word => word.correspondsTo(number) }
-  }
-
 }
+

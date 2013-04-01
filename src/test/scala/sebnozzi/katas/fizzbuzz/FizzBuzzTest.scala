@@ -38,24 +38,23 @@ class FizzBuzzSuite extends FunSuite {
   }
 
   test("game to upper bound 1") {
-    assert(fizzBuzzUpTo(1) === List("1"))
+    assert(fizzBuzzOf(1 to 1) === List("1"))
   }
 
   test("game to upper bound 2") {
-    assert(fizzBuzzUpTo(2) === List("1", "2"))
+    assert(fizzBuzzOf(1 to 2) === List("1", "2"))
   }
 
   test("game to upper bound 3") {
-    assert(fizzBuzzUpTo(3) === List("1", "2", "Fizz"))
+    assert(fizzBuzzOf(1 to 3) === List("1", "2", "Fizz"))
   }
 
   test("game to upper bound 5") {
-    assert(fizzBuzzUpTo(5) === List("1", "2", "Fizz", "4", "Buzz"))
+    assert(fizzBuzzOf(1 to 5) === List("1", "2", "Fizz", "4", "Buzz"))
   }
 
   test("game to upper bound 15") {
-    assert(fizzBuzzUpTo(15).last === "Fizz-Buzz")
-    assert(fizzBuzzUpTo(15)(14) === "Fizz-Buzz")
+    assert(fizzBuzzOf(1 to 15).last === "Fizz-Buzz")
   }
 
   test("7 translates to Wizz") {
