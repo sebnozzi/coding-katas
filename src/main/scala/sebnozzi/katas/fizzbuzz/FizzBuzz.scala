@@ -20,7 +20,7 @@ object FizzBuzz {
     new Word("Buzz", condition = { number => number.isDivisibleByOrHasDigit(5) }),
     new Word("Wizz", condition = { number => number.isDivisibleByOrHasDigit(7) }))
 
-  private case class Word(word: String, condition: (Int) => Boolean) {
+  private class Word(word: String, condition: (Int) => Boolean) {
     def correspondsTo(number: Int): Boolean = condition(number)
     override def toString = word
   }
