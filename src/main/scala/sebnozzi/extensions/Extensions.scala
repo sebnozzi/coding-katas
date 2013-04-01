@@ -2,13 +2,18 @@ package sebnozzi.extensions
 
 object Extensions {
 
-  implicit class MyInt(thisNumber: Int) {
-    def isDivisibleByOrHasDigit(other: Int) = { isDivisibleBy(other) || hasDigit(other) }
-    def isDivisibleBy(other: Int) = thisNumber % other == 0
-    def hasDigit(c: Char): Boolean = thisNumber.toString.contains(c)
-    def hasDigit(x: Int): Boolean = {
-      assert(x >= 0 && x < 10, s"Number should be 1 digit long (found: $x)")
-      hasDigit(x.toString.head)
+  implicit class MyInt(wrappedInt: Int) {
+    
+    def isDivisibleByOrHasDigit(number: Int) = isDivisibleBy(number) || hasDigit(number)
+    
+    def isDivisibleBy(divisor: Int) = wrappedInt % divisor == 0
+    
+    def hasDigit(digit: Char): Boolean = wrappedInt.toString.contains(digit)
+    
+    def hasDigit(singleDigitNr: Int): Boolean = {
+      assert(singleDigitNr >= 0 && singleDigitNr < 10, 
+          s"Number should be 1 digit long (found: $singleDigitNr)")
+      hasDigit(singleDigitNr.toString.head)
     }
   }
   
