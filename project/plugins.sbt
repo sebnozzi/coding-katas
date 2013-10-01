@@ -1,11 +1,6 @@
 resolvers += Classpaths.typesafeResolver
 
-resolvers += "scct-github-repository" at "http://mtkopone.github.com/scct/maven-repo"
-
-//resolvers += "undercoverRepo" at "http://undercover.googlecode.com/svn/maven/repository/"
-
-
-addSbtPlugin("reaktor" % "sbt-scct" % "0.2-SNAPSHOT")
+addSbtPlugin("com.github.scct" % "sbt-scct" % "0.2")
 
 
 addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.1.1")
